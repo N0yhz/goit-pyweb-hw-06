@@ -92,6 +92,8 @@ connection.commit()
 connection.close()
 ```
 
+**2. SQL scripts**
+
 <details>
   <summary><i>query_1.sql</i></summary>
 
@@ -105,4 +107,150 @@ LIMIT 5;
 ```
 </details>
 
+<details>
+  <summary><i>query_2.sql</i></summary>
 
+```
+SELECT s.name, AVG(g.grade) AS avg_grade
+FROM students s 
+JOIN grades  g ON s.id = g.student_id
+JOIN subjects sub ON g.subject_id = sub.id 
+WHERE sub.name = 'Physics' -- subject name
+GROUP BY s.id
+ORDER BY avg_grade DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary><i>query_3.sql</i></summary>
+
+```
+SELECT gr.name, AVG(g.grade) AS avg_grade
+FROM grades g
+JOIN students s ON g.id = s.id
+JOIN groups gr ON s.group_id = gr.id
+JOIN subjects sub ON g.subject_id = sub.id
+WHERE sub.name = 'Math' -- subject name
+GROUP BY gr.id;
+```
+</details>
+
+<details>
+  <summary><i>query_4.sql</i></summary>
+
+```
+SELECT AVG(grade) AS avg_grade
+FROM grades;
+```
+</details>
+
+<details>
+  <summary><i>query_5.sql</i></summary>
+
+```
+SELECT sub.name
+FROM subjects sub
+JOIN teachers t ON sub.teacher_id = t.id
+WHERE t.name = 'Brittney Collins'; -- teacher name
+```
+</details>
+
+<details>
+  <summary><i>query_6.sql</i></summary>
+
+```
+SELECT s.name
+FROM students s 
+JOIN groups gr ON s.group_id = gr.id 
+WHERE gr.name = "Group A"; -- group name
+```
+</details>
+
+<details>
+  <summary><i>query_7.sql</i></summary>
+
+```
+SELECT s.name, g.grade, g.date
+FROM grades g
+JOIN students s ON g.student_id = s.id
+JOIN groups gr ON s.group_id = gr.id
+JOIN subjects sub ON g.subject_id = sub.id 
+WHERE gr.name = 'Group B' -- group name 
+AND sub.name = 'Literature'; -- subject name
+```
+</details>
+
+<details>
+  <summary><i>query_8.sql</i></summary>
+
+```
+SELECT AVG(g.grade) AS avg_grade
+FROM grades g
+JOIN subjects sub ON g.subject_id = sub.id
+JOIN teachers t ON sub.teacher_id = t.id
+WHERE t.name = "Brittney Collins"; --teacher name
+```
+</details>
+
+<details>
+  <summary><i>query_9.sql</i></summary>
+
+```
+SELECT sub.name
+FROM grades g
+JOIN subjects sub ON g.subject_id = sub.id
+JOIn students s ON g.student_id = s.id 
+WHERE s.name = "Joseph Bailey MD"; --student name
+```
+</details>
+
+<details>
+  <summary><i>query_10.sql</i></summary>
+
+```
+SELECT sub.name
+FROM grades g
+JOIN subjects sub ON g.subject_id = sub.id 
+JOIN students s ON g.student_id = s.id 
+JOIN teachers t ON sub.teacher_id = t.id 
+WHERE s.name = 'Joseph Bailey MD' -- student name
+AND t.name = 'Brittney Collins'; -- teacher name
+```
+</details>
+
+**3. Extra task SQL scripts***
+<details>
+  <summary><i>query_ex_1.sql</i></summary>
+
+```
+SELECT AVG(g.grade) AS avg_grade
+FROM grades g
+JOIN subjects sub ON g.subject_id = sub.id
+JOIN teachers t ON sub.teacher_id = t.id
+JOIN students s ON g.student_id = s.id
+WHERE t.name = 'Aaron Lynch'  -- teacher name
+AND s.name = 'Andrea Weaver'; -- student name
+```
+</details>
+
+<details>
+  <summary><i>query_ex_2.sql</i></summary>
+
+```
+SELECT s.name AS student_name, g.grade, g.date
+FROM grades g
+JOIN students s ON g.student_id = s.id
+JOIN groups gr ON s.group_id = gr.id
+JOIN subjects sub ON g.subject_id = sub.id
+WHERE gr.name = 'Group C'  -- group name
+AND sub.name = 'History'  -- subject name
+AND g.date = (
+    SELECT MAX(g2.date)
+    FROM grades g2
+    JOIN students s2 ON g2.student_id = s2.id
+    WHERE s2.group_id = gr.id
+    AND g2.subject_id = sub.id
+);
+```
+</details>
