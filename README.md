@@ -1,6 +1,6 @@
 # goit-pyweb-hw-06
 
-##**1. database_script.py**
+## 1. database_script.py
 
 ```
 import sqlite3
@@ -92,7 +92,7 @@ connection.commit()
 connection.close()
 ```
 
-##**2. SQL scripts**
+## 2. SQL scripts
 
 <details>
   <summary><i>query_1.sql</i></summary>
@@ -219,7 +219,7 @@ AND t.name = 'Brittney Collins'; -- teacher name
 ```
 </details>
 
-##**3. Extra task SQL scripts**
+## 3. Extra task SQL scripts
 <details>
   <summary><i>query_ex_1.sql</i></summary>
 
