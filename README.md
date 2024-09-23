@@ -219,7 +219,7 @@ AND t.name = 'Brittney Collins'; -- teacher name
 ```
 </details>
 
-**3. Extra task SQL scripts***
+**3. Extra task SQL scripts**
 <details>
   <summary><i>query_ex_1.sql</i></summary>
 
